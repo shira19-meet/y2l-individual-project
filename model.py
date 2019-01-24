@@ -6,5 +6,12 @@ from sqlalchemy import create_engine
 Base = declarative_base()
 
 # Write your classes here :
-class Product(Base):
-    pass
+class Users(Base):
+	__tablename__ = 'users'
+	id = Column(Integer, primary_key = True)
+	email = Column(String)
+	password = Column(String)
+	first_name = Column(String)
+	last_name = Column(String)
+
+class 
