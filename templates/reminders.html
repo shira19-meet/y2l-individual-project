@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<style> 
+body{
+  background-image: url("/static/img/img.jpg");
+}
+h2 {
+  font-style: oblique;
+}
+</style>
 
+</style>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
-<body>
+
+<center><body>
   <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -17,7 +27,7 @@
     <ul class="nav navbar-nav">
       <li><a href="{{url_for('signIn')}}">login</a></li>
       <li class="active"><a href="{{url_for('home')}}">Home</a></li>
-      <li><a href="{{url_for('settings')}}">Settings</a></li>
+      
       <li><a href="{{url_for('reminders')}}">reminders</a></li>
     </ul>
   </div>
@@ -26,6 +36,26 @@
 <div class="container">
 
 </div>
-<center><h2>You need to take:</h2></center>
-</body>
+<center><h2 style="color:#17191;">You need to remember to take:</h2></center>
+
+{% for r in reminders %}
+
+<p><font size="5">{{ r.what }}</font></p>
+
+
+
+
+{% endfor %}
+<center><h2 style="color:#17191;">You have:</h2></center>
+
+{% for r in reminders %}
+
+<p><font size="5">{{ r.how }}</font></p>
+
+
+
+
+{% endfor %}
+<center><h2 style="color:#17191;"> till the reminder turns off</h2></center>
+</body></center>
 </html>

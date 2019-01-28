@@ -14,4 +14,12 @@ class Users(Base):
 	first_name = Column(String)
 	last_name = Column(String)
 
-class 
+class Reminder(Base):
+	__tablename__='home'
+	id= Column(Integer, primary_key = True)
+	where = Column(String)
+	how = Column(Integer)
+	what = Column(String)
+
+def __repr__(self):
+	return ("email adress:{}, password:{}".format(self.email, self.password))

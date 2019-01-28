@@ -1,40 +1,78 @@
 from model import *
-from flask import Flask, render_template, url_for, redirect, request
-app = Flask(__name__)
-from database import query_user_by_email, create_user
+from flask import Flask, render_template, url_for, redirect, request, session
 
+import database as db
+
+app = Flask(__name__)
+app.config["SECRET_KEY"] = "secret-key"
 
 @app.route('/', methods=['GET', 'POST'])
 def signIn():
 	if request.method == 'GET':
+		if "logged_in" in session:
+			return redirect(url_for("home"))
 		return render_template('signIn.html')
 	else:
 		email = request.form['email']
 		password = request.form['password']
 
-		user = query_user_by_email(email)
-		if user.password == password:
+		user = db.query_user_by_email(email)
+		if len(user) > 0 and user[0].password == password:
+			session["logged_in"] = True
 			return render_template('home.html')
+		else: 
+			return "User does not exist"
 
 
 @app.route('/signUp', methods=['GET', 'POST'])
 def signUp():
-	return render_template("signIn.html")
+	if request.method == "GET":
+		return render_template("signIn.html")
+	else:
+		firstname = request.form["firstname"]
+		lastname = request.form["lastname"]
+		password = request.form["password"]
+		email = request.form["email"]
+		db.create_user(email, password, first_name=firstname, last_name=lastname)
+		return redirect(url_for("home"))
+
 
 @app.route('/home')
 def home():
+	if "logged_in" not in session:
+		return redirect(url_for("signIn"))
 	return render_template("home.html")
 
 
 @app.route('/settings')
 def settings():
+	if "logged_in" not in session:
+		return redirect(url_for("signIn"))
 	return render_template("settings.html")
 
 @app.route('/reminders')
 def reminders():
-	return render_template("reminders.html")
+	if "logged_in" not in session:
+		return redirect(url_for("signIn"))
+	reminders = db.get_reminders()
+	return render_template("reminders.html", reminders=reminders)
+
+@app.route("/add-reminder", methods=["POST"])
+def add_reminder():
+	where = request.form["where"]
+	what = request.form["what"]
+	how = request.form["how"]
+
+	db.add_reminder(where, how, what)
+
+	return redirect(url_for("reminders"))
 
 
+@app.route("/logout")
+def logout():
+	if "logged_in" in session:
+		del session["logged_in"]
+	return redirect(url_for("signIn"))
 
 if __name__ == '__main__':
 	app.run(debug=True)
