@@ -8,6 +8,7 @@ body{
 h2 {
   font-style: oblique;
 }
+
 </style>
 
   <meta charset="utf-8">
@@ -28,6 +29,7 @@ h2 {
       <li class="active"><a href="{{url_for('home')}}">Home</a></li>
     
       <li><a href="{{url_for('reminders')}}">reminders</a></li>
+     
     </ul>
   </div>
 </nav>
@@ -37,7 +39,7 @@ h2 {
 </div>
 
 
-<div class="jumbotron text-center">
+<center><div class="jumbotron text-center">
   <h2 style="color:#17191;">RemindMe</h2>
 </div>
   <form method="POST" action="/add-reminder">
@@ -47,7 +49,7 @@ h2 {
 
    <div class="form-group"><font size= "4">
                               <label for="question">For how long are you planning to be out?</label>
-                              <input type="text" name="how"  class="form-control" id="how"  placeholder="Enter an amount of hours"></font></div>
+                              <input type="number" min="0" name="how"  class="form-control" id="how"  placeholder="Enter an amount of hours"></font></div>
 
    <div class="form-group"><font size= "4">
                               <label for="question">What are you taking with you?</label>
@@ -59,7 +61,7 @@ h2 {
 
 
 
-</div>
+</div></center>
 
 
 </body>

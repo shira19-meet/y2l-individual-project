@@ -1,5 +1,6 @@
 from model import *
 from flask import Flask, render_template, url_for, redirect, request, session
+import datetime
 
 import database as db
 
@@ -61,11 +62,25 @@ def reminders():
 def add_reminder():
 	where = request.form["where"]
 	what = request.form["what"]
-	how = request.form["how"]
-
-	db.add_reminder(where, how, what)
+	how = int(request.form["how"])
+	current = datetime.datetime.now()
+	minutes = minutes%60
+	seconds = minutes%60
+	minutes = seconds//60
+	hours = minutes//60
+	hours = hours%24
+	hours = int(current.hour)+how
+	days = hours//24
+	
+	
+	current.replace(hour=hours)
+	current.replace(minute = minutes)
+	current.replace(second=secondes)
+	current.replace(day = current.day+days)
+	db.add_reminder(where, current, what)
 
 	return redirect(url_for("reminders"))
+	
 
 
 @app.route("/logout")

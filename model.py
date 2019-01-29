@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String, Boolean
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, DateTime
 
 Base = declarative_base()
 
@@ -18,7 +18,7 @@ class Reminder(Base):
 	__tablename__='home'
 	id= Column(Integer, primary_key = True)
 	where = Column(String)
-	how = Column(Integer)
+	how = Column(DateTime)
 	what = Column(String)
 
 def __repr__(self):
