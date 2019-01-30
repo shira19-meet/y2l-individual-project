@@ -7,8 +7,29 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-</head>
+  <style>
+#first{
 
+  margin-top: 100px;
+  margin-bottom: 100px;
+  margin-right:250px;
+  margin-left: 250px;
+
+}
+#second{
+
+  margin-top: 100px;
+  margin-bottom: 100px;
+  margin-right:250px;
+  margin-left: 250px;
+
+}
+body{
+  background-image: url("/static/img/round.jpg");
+}
+
+</style>
+</head>
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
       <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -32,19 +53,20 @@
 
 </div>
     <div class="container">
-        <div class="row">
-			<div class="col-md-5 mx-auto">
-			<div id="first">
-				<div class="myform form ">
-					 <div class="logo mb-3">
-						 <div class="col-md-12 text-center">
+        
+      <div class="col-md-12 mx-auto" >
+
+      <div id="first">
+        <div class="myform form ">
+           <div class="logo mb-17">
+             <div class="col-md-20 text-center">
 							<h1>Login</h1>
 						 </div>
 					</div>
                    <form action="/" method="post" name="login">
                            <div class="form-group">
                               <label for="exampleInputEmail1">Email address</label>
-                              <input type="email" name="email"  class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                              <input type="email" name="email"class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email"><br>
                            </div>
                            <div class="form-group">
                               <label for="exampleInputEmail1">Password</label>
@@ -70,11 +92,11 @@
 			</div>
 			  <div id="second">
 			      <div class="myform form ">
-                        <div class="logo mb-3">
-                           <div class="col-md-12 text-center">
+                        
+                           <div >
                               <h1 >Signup</h1>
                            </div>
-                        </div>
+                        
                         <form action="/signUp" name="registration" method="POST">
                            <div class="form-group">
                               <label for="exampleInputEmail1">First Name</label>
@@ -103,7 +125,7 @@
                            </div>
 <div>
   
-  
+
 </div>
                             </div>
                         </form>

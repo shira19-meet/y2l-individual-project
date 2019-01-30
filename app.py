@@ -64,18 +64,19 @@ def add_reminder():
 	what = request.form["what"]
 	how = int(request.form["how"])
 	current = datetime.datetime.now()
-	minutes = minutes%60
-	seconds = minutes%60
-	minutes = seconds//60
-	hours = minutes//60
-	hours = hours%24
 	hours = int(current.hour)+how
+	#minutes = hours%60
+	#seconds = minutes%60
+	#minutes = seconds//60
+	hours = hours%24
+	#hours = minutes//60
+	
 	days = hours//24
 	
-	
+
 	current.replace(hour=hours)
-	current.replace(minute = minutes)
-	current.replace(second=secondes)
+	#current.replace(minute = minutes)
+	#current.replace(second=secondes)
 	current.replace(day = current.day+days)
 	db.add_reminder(where, current, what)
 
