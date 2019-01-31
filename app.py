@@ -74,10 +74,10 @@ def add_reminder():
 	days = hours//24
 	
 
-	current.replace(hour=hours)
+	current = current.replace(hour=hours)
 	#current.replace(minute = minutes)
 	#current.replace(second=secondes)
-	current.replace(day = current.day+days)
+	current = current.replace(day = current.day+days)
 	db.add_reminder(where, current, what)
 
 	return redirect(url_for("reminders"))

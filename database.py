@@ -3,7 +3,7 @@ from model import *
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-engine = create_engine('sqlite:///database.db?check_same_thread=False')
+engine = create_engine('sqlite:///databases1.db?check_same_thread=False')
 Base.metadata.create_all(engine)
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
@@ -46,3 +46,6 @@ def get_reminders():
 	reminders = session.query(Reminder).all()
 	return reminders
 
+p = get_reminders()
+for a in p:
+	print(a)
